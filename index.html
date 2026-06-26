@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HRMS — Attendance & Payroll</title>
+    <script type="module" crossorigin src="/HRMS---Attendannce-Payroll/assets/index-eqkY_Izv.js"></script>
+    <link rel="stylesheet" crossorigin href="/HRMS---Attendannce-Payroll/assets/index-D-iHYoj7.css">
+  </head>
+  <body>
+    <script>
+      (function () {
+        try {
+          const key = 'hrms-theme-mode';
+          const stored = localStorage.getItem(key);
+          const theme = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const active = theme === 'system' ? (dark ? 'dark' : 'light') : theme;
+          document.documentElement.dataset.theme = active;
+        } catch (err) {}
+      })();
+    </script>
+    <div id="root"></div>
+  </body>
+</html>
