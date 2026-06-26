@@ -1,0 +1,15 @@
+{
+  "name": "attendance-payroll-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm:server\" \"npm:client\"",
+    "dev": "concurrently \"npm:server:dev\" \"npm:client\"",
+    "server": "cd server && npm run start",
+    "server:dev": "cd server && npm run dev",
+    "client": "cd client && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

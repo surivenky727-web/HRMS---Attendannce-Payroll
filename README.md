@@ -21,17 +21,33 @@ Full-stack MVP: **MongoDB + Express + React (JavaScript) + Node**.
 ## Quick Start
 
 ```bash
-# 1. Backend
-cd server
-cp .env.example .env       # edit MONGO_URI, JWT_SECRET
+# Install root, server, and client dependencies
 npm install
-npm run seed               # creates demo admin + employees + departments
-npm run dev                # http://localhost:5000
+cd server && npm install
+cd ../client && npm install
+```
 
-# 2. Frontend (new terminal)
+### Run development servers from project root
+```bash
+npm run dev
+```
+
+This starts:
+- backend on `http://localhost:5000`
+- frontend on `http://localhost:5173` (or the next available Vite port)
+
+The frontend uses a Vite proxy for `/api` so calls are forwarded to the backend without CORS issues.
+
+### Alternative independent start
+```bash
+cd server
+npm run dev
+```
+
+```bash
 cd client
-npm install
-npm run dev                # http://localhost:5173
+npm run dev
+```
 ```
 
 ## Default Login
@@ -46,8 +62,8 @@ JWT_SECRET=replace-me-with-a-long-random-string
 CLIENT_URL=http://localhost:5173
 ```
 
-The frontend reads `VITE_API_URL` (defaults to `http://localhost:5000/api`).
-Optionally create `client/.env` with `VITE_API_URL=http://localhost:5000/api`.
+The frontend reads `VITE_API_URL` (defaults to `/api` for development via the Vite proxy).
+If you need to override this for production, create `client/.env` with `VITE_API_URL=http://your-api-host/api`.
 
 ## API Endpoints
 
