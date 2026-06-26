@@ -8,10 +8,12 @@ import { ToastProvider } from './context/ToastContext.jsx';
 import { NotificationsProvider } from './context/NotificationsContext.jsx';
 import './index.css';
 
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <AuthProvider>
           <ToastProvider>
             <NotificationsProvider>

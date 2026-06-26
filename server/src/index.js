@@ -5,9 +5,24 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 const app = express();
-const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:5174', 'http://127.0.0.1:5173'].filter(Boolean);
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'http://localhost:5174',
+  'http://127.0.0.1:5174',
+  'https://twenty-guests-obey.loca.lt',
+  'https://wild-tires-turn.loca.lt',
+].filter(Boolean);
 app.use(cors({ origin: (origin, callback) => {
-  if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+  if (!origin) return callback(null, true);
+  if (allowedOrigins.includes(origin)) return callback(null, true);
+  try {
+    const { hostname } = new URL(origin);
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname.endsWith('.loca.lt')) {
+      return callback(null, true);
+    }
+  } catch {}
   callback(new Error(`CORS origin denied: ${origin}`));
 }, credentials: true }));
 app.use(express.json({ limit: '2mb' }));
